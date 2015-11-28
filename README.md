@@ -1,11 +1,12 @@
 # last-one-wins
 
-Make sure the last sync call to an async function
-is executed after all previous ones have finished
+Make sure the last sync call to an async function is executed after all previous ones have finished
 
 ```
 npm install last-one-wins
 ```
+
+[![build status](http://img.shields.io/travis/mafintosh/last-one-wins.svg?style=flat)](http://travis-ci.org/mafintosh/last-one-wins)
 
 ## Usage
 
