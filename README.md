@@ -49,7 +49,7 @@ are executed - only the last one is guaranteed to be executed.
 This module is useful if you want sync a value to a leveldb and want to
 make sure the latest version of that value is the one written. For example
 
-```
+``` js
 var update = low(function (val, cb) {
   db.put('my-key', val, cb)
 })
