@@ -82,5 +82,4 @@ tape('works with falsy arg', function (t) {
   function called () {
     t.ok(true)
   }
-
 })
