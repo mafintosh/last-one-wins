@@ -63,3 +63,24 @@ tape('calls callbacks with errors', function (t) {
     t.ok(!err)
   }
 })
+
+tape('works with falsy arg', function (t) {
+  t.plan(7)
+
+  var expected = [1, 0]
+  var fn = low(function (num, cb) {
+    t.same(num, expected.shift())
+    process.nextTick(cb)
+  })
+
+  fn(1, called)
+  fn(2, called)
+  fn(3, called)
+  fn(4, called)
+  fn(0, called)
+
+  function called () {
+    t.ok(true)
+  }
+
+})

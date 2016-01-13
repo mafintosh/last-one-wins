@@ -32,7 +32,7 @@ module.exports = function (work) {
     var cb = callback
     callback = null
 
-    if (next) {
+    if (pending) {
       callbacks = pending
       pending = null
       update(callAll)
