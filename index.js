@@ -25,6 +25,7 @@ module.exports = function (work) {
   function callAll (err) {
     var cbs = callbacks
     callbacks = null
+    if (!cbs) return
     for (var i = 0; i < cbs.length; i++) cbs[i](err)
   }
 
