@@ -22,25 +22,23 @@ module.exports = function (work) {
     work(val, done)
   }
 
-  function callAll (err) {
-    var cbs = callbacks
-    callbacks = null
-    if (!cbs) return
-    for (var i = 0; i < cbs.length; i++) cbs[i](err)
-  }
-
   function done (err) {
     var cb = callback
+    var cbs = callbacks
+    callbacks = null
     callback = null
 
     if (pending) {
       callbacks = pending
       pending = null
-      update(callAll)
+      update(noop)
     }
 
+    if (cbs) {
+      for (var i = 0; i < cbs.length; i++) cbs[i](err)
+    }
     cb(err)
   }
 }
 
-function noop () {}
+function noop (_) {}

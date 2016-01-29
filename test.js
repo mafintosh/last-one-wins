@@ -37,6 +37,32 @@ tape('calls callbacks', function (t) {
   }
 })
 
+tape('calls callbacks twice', function (t) {
+  t.plan(13)
+
+  var expected = [1, 5, 6, 9]
+  var fn = low(function (num, cb) {
+    t.same(num, expected.shift())
+    process.nextTick(cb)
+  })
+
+  fn(1, called)
+  fn(2, called)
+  fn(3, called)
+  fn(4, called)
+  fn(5, function () {
+    called()
+    fn(6, called)
+    fn(7, called)
+    fn(8, called)
+    fn(9, called)
+  })
+
+  function called () {
+    t.ok(true)
+  }
+})
+
 tape('calls callbacks with errors', function (t) {
   t.plan(7)
 
